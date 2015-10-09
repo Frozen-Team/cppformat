@@ -95,6 +95,7 @@ if (BIICODE)
 endif ()
 
 add_library(cppformat ${FMT_SOURCES})
+set_target_properties(cppformat PROPERTIES DEBUG_POSTFIX -d)
 if (BUILD_SHARED_LIBS)
   # Fix rpmlint warning:
   # unused-direct-shlib-dependency /usr/lib/libformat.so.1.1.0 /lib/libm.so.6.
@@ -157,6 +158,8 @@ endif ()
 if (FMT_INSTALL)
   set(FMT_LIB_DIR lib CACHE STRING
     "Installation directory for libraries, relative to ${CMAKE_INSTALL_PREFIX}.")
-  install(TARGETS cppformat DESTINATION ${FMT_LIB_DIR})
+  install(TARGETS cppformat 
+    DESTINATION ${FMT_LIB_DIR}
+  )
   install(FILES format.h DESTINATION include/cppformat)
 endif ()
